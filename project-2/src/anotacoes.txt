@@ -1,0 +1,22 @@
+anotações relevantes sobre Hooks
+
+º useState setState com callback:
+  sempre que utilizarmos a variável e a função de set de um useState
+  é interessante passar a chamada da função setState como um callback
+  fazendo referência a variável que precisa ser setada como um parâmetro
+  dentro da função set.
+
+Exemplos:
+  const [reverse, setReverse] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const reverseClass = reverse ? 'reverse' : '';
+
+  const handleClick = () => {
+    setReverse((preventReverse) => !preventReverse); <- c /parâmetro
+    setReverse(!reverse) <- s /parâmetro
+  };
+
+  const handleIncrement = () => {
+    setCounter((preventCounter) => preventCounter + 1); c /prâmetro
+    setCounter(counter + 1) s /parâmetro
+  };
