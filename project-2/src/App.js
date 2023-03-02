@@ -1,44 +1,84 @@
-import { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
+const eventFn = () => console.log('h1-clicado');
+
+// COMPONENT EXAMPLE USEEFFECT
 function App() {
-  const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
-  const reverseClass = reverse ? 'reverse' : '';
+  const [counter2, setCounter2] = useState(0);
 
-  const handleClick = () => {
-    setReverse((preventReverse) => !preventReverse);
-  };
+  // componentDidUpdate - executa toda vez que o componet atualiza
+  // useEffect(() => {
+  //   console.log('componentDidUpdate');
+  // });
 
-  const handleIncrement = () => {
-    setCounter((preventCounter) => preventCounter + 1);
-  };
+  // componentDidMount - executa 1x
+  useEffect(() => {
+    // console.log('componentDidMount');
+    document.querySelector('h1')?.addEventListener('click', eventFn);
+
+    // COMPONENT WILL UMOUNT - LIMPEZA
+    return () => {
+      document.querySelector('h1')?.removeEventListener('click', eventFn);
+    };
+  }, []);
+
+  // com dependência - executa toda vez que a depedência mudar
+  useEffect(() => {
+    console.log(`C1, ${counter} C2: ${counter2}`);
+  }, [counter, counter2]);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
-
-        <h1>Contador: {counter}</h1>
-
-        <p>
-          <button type="button" onClick={handleClick}>
-            Reverse {reverseClass}
-          </button>
-        </p>
-
-        <p>
-          <button type="button" onClick={handleIncrement}>
-            Increment {counter}
-          </button>
-        </p>
-      </header>
+      <p>Teste 1</p>
+      <h1>
+        C1: {counter} C2: {counter2}
+      </h1>
+      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button onClick={() => setCounter2(counter2 + 1)}>+(2)</button>
     </div>
   );
 }
 
-//EXEMPLO COM CLASS
+//COMPONENT EXAMPLE USESTATE
+// function App() {
+//   const [reverse, setReverse] = useState(false);
+//   const [counter, setCounter] = useState(0);
+//   const reverseClass = reverse ? 'reverse' : '';
+
+//   const handleClick = () => {
+//     setReverse((preventReverse) => !preventReverse);
+//   };
+
+//   const handleIncrement = () => {
+//     setCounter((preventCounter) => preventCounter + 1);
+//   };
+
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className={`App-logo ${reverseClass}`} alt="logo" />
+
+//         <h1>Contador: {counter}</h1>
+
+//         <p>
+//           <button type="button" onClick={handleClick}>
+//             Reverse {reverseClass}
+//           </button>
+//         </p>
+
+//         <p>
+//           <button type="button" onClick={handleIncrement}>
+//             Increment {counter}
+//           </button>
+//         </p>
+//       </header>
+//     </div>
+//   );
+// }
+
+//COMPONENT EXAMPLE CLASS
 
 // class App extends Component {
 //   state = {

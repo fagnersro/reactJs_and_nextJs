@@ -1,12 +1,12 @@
 anotações relevantes sobre Hooks
 
-º useState setState com callback:
+º useState, setState com callback:
   sempre que utilizarmos a variável e a função de set de um useState
   é interessante passar a chamada da função setState como um callback
   fazendo referência a variável que precisa ser setada como um parâmetro
   dentro da função set.
 
-Exemplos:
+Exemplo:
   const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
   const reverseClass = reverse ? 'reverse' : '';
@@ -20,3 +20,23 @@ Exemplos:
     setCounter((preventCounter) => preventCounter + 1); c /prâmetro
     setCounter(counter + 1) s /parâmetro
   };
+
+º useEffect, limpeza com component will umount
+    Ao utilizar o useEffect como componentDidMount - ( que executa 1x ao atualizar o componente )
+    e não carrega dependência, é nescessaro fazer uma limpeza do código que foi executado.
+    retornando uma Arrow function que executa a exclusão do código que foi incluído.
+
+Exemplo:
+    // componentDidMount - executa 1x
+    useEffect(() => {
+    // console.log('componentDidMount');
+    document.querySelector('h1')?.addEventListener('click', eventFn);  < - incluíndo
+
+    // COMPONENT WILL UMOUNT - LIMPEZA
+    return () => {
+      document.querySelector('h1')?.removeEventListener('click', eventFn); < - excluindo ( Limpando )
+    };
+  }, []);
+
+A tipos de Effects e são [COMPONENTS DID UPDATE, COMPONENTS DID UMOUNT
+( COM DEPENDÊNCIA E SEM DEPENDÊNCIA )]  e é possivél aplicar o COMPONENT WILL UMOUNT - LIMPEZA
