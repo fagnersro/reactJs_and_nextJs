@@ -44,3 +44,7 @@ A tipos de Effects e são [COMPONENTS DID UPDATE, COMPONENTS DID UMOUNT
 º useCallback entedendo so re-renderizações:
     Hook que permite armazenar em cache uma definição de função entre re-renderizações
     se suas depêndencias não tiverem mudado.
+
+º useMemo:
+  useMemo é um React Hook que permite armazenar em cache o resultado de um cálculo
+  entre re-renderizações.
