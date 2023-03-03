@@ -40,3 +40,7 @@ Exemplo:
 
 A tipos de Effects e são [COMPONENTS DID UPDATE, COMPONENTS DID UMOUNT
 ( COM DEPENDÊNCIA E SEM DEPENDÊNCIA )]  e é possivél aplicar o COMPONENT WILL UMOUNT - LIMPEZA
+
+º useCallback entedendo so re-renderizações:
+    Hook que permite armazenar em cache uma definição de função entre re-renderizações
+    se suas depêndencias não tiverem mudado.
