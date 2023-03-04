@@ -48,3 +48,23 @@ A tipos de Effects e são [COMPONENTS DID UPDATE, COMPONENTS DID UMOUNT
 º useMemo:
   useMemo é um React Hook que permite armazenar em cache o resultado de um cálculo
   entre re-renderizações.
+
+º useRef:
+  useRef é um React Hook que permite referenciar um valor que não é necessário
+  para a rendenrização.
+  Exemplo:
+
+  export default function Counter() {
+  let ref = useRef(0);
+
+  function handleClick() {
+    ref.current = ref.current + 1;
+    alert('You clicked ' + ref.current + ' times!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me!
+    </button>
+  );
+}
