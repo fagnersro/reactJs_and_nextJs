@@ -68,3 +68,6 @@ A tipos de Effects e são [COMPONENTS DID UPDATE, COMPONENTS DID UMOUNT
     </button>
   );
 }
+
+º useContext:
+  useContexté um React Hook que permite que você leia e assine o contexto de seu componente.
