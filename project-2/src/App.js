@@ -1,14 +1,66 @@
+import { useReducer } from 'react';
+
 import './App.css';
-import { Div } from './components/Div';
-import { AppContext } from './components/contexts/AppContext';
+
+const globalState = {
+  title: 'O titulo do contexto',
+  body: 'O body do contexto',
+  counter: 0,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'muda': {
+      console.log('Chamou muda', action.payloud);
+      return { ...state, title: action.payloud };
+    }
+
+    case 'inverter': {
+      console.log('Chamou inverter');
+      const { title } = state;
+      return { ...state, title: title.split('').reverse().join('') };
+    }
+  }
+  return { ...state };
+};
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, globalState);
+  const { counter, title, body } = state;
+
   return (
-    <AppContext>
-      <Div />
-    </AppContext>
+    <div>
+      <h1>
+        {title}
+        {counter}
+      </h1>
+      <button
+        onClick={() =>
+          dispatch({
+            type: 'muda',
+            payloud: new Date().toLocaleString('pt-BR'),
+          })
+        }
+      >
+        Click
+      </button>
+      <button onClick={() => dispatch({ type: 'inverter' })}>inverter</button>
+    </div>
   );
 }
+
+// EXEMPLO USECONTEXT
+// import './App.css';
+// import { Div } from './components/Div';
+// import { AppContext } from './components/contexts/AppContext';
+
+// function App() {
+//   return (
+//     <AppContext>
+//       <Div />
+//     </AppContext>
+//   );
+// }
 
 //EXEMPLO DE USEREF
 // import P from 'prop-types';
